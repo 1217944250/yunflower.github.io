@@ -1,0 +1,797 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>计算机网络实验</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix foreignobject { font-size: var(--mermaid-font-zoom); }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+ :root {--mermaid-font-zoom:1.25em ;} 
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h2>计算机网络实验</h2><h2>
+    </h2><h3>简介</h3><h3>
+</h3><h5>本计算机网络实验由验证性、Wireshark 和 Cisco Packet Tracer 实验等三个部分组成，对计算机网络课程中所学的知识进行实际操作，进一步加深对计算机网络的理解.</h5><p>&nbsp;</p><h3>验证性实验</h3><h3>
+    </h3><h4>1.ipconfig</h4><h4></h4><h5>1.1 实作一</h5><h5></h5><p><span>要求： 使用 ipconfig /all 查看自己计算机的网络配置，尽可能明白每行的意思，特别注意 IP 地址、子网掩码 Subnet Mask、网关 Gateway。</span>
+<span>结果：</span></p><p><span>-1、 在windows中使用ipconfig命令。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102145404757.png" alt="image-20220102145404757" style="zoom: 67%;" /></p><p><span>-2、 在Linux中使用ifconfig命令：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102152816711.png" alt="image-20220102152816711" style="zoom:67%;" /></p><p>&nbsp;</p><h5>1.2 实作二</h5><h5></h5><p><span>要求： 使用 ipconfig/all 查看旁边计算机的网络配置，看看有什么异同。</span>
+<span>结果： 由于无其他计算机，故使用搭载Linux系统的虚拟机对此实验进行操作，结果如</span><strong><span>实作一中图二</span></strong><span>。</span>
+<font color="rgb(240, 248, 255)"><span>思考： 这两台计算机是否处于同一子网，为什么？</span></font></p><blockquote><p><span>这两台计算机不处于同一子网，将两台计算机的IP地址与子网掩码进行</span><strong><span>与运算</span></strong><span>，可得到主机网络地址与虚拟机中的网络地址并不在一个子网内。</span></p></blockquote><h3>2.ping</h3><h3></h3><h5>2.1 简介</h5><h5></h5><p>PING （Packet Internet Groper），因特网包探索器，用于测试网络连接量的程序 。ping 是工作在 TCP/IP 网络体系结构中应用层的一个服务命令， 主要是向特定的目的主机发送 ICMP（Internet Control Message Protocol 因特网报文控制协议）Echo 请求报文，测试目的站是否可达及了解其有关状态。</p><p></p><h5>2.2 实作一</h5><h5></h5><p><span>要求： 要测试到某计算机服务器的连通性，可以使用 ping + 网址 命令，也可直接使用 ping + IP 地址。掌握使用该命令后屏幕显示的反馈回来信息的意思，如：TTL、时间等。</span>
+<span>结果：   </span></p><p><span> </span><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102154619721.png" alt="image-20220102154619721" style="zoom:67%;" /></p><p>&nbsp;</p><h5>2.3 实作二</h5><h5></h5><p>&nbsp;</p><p><span>要求： 使用 ping /? 命令了解该命令的各种选项并实际使用。</span></p><p><span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102154644967.png" alt="image-20220102154644967" style="zoom:67%;" /></p><p><font color="rgb(240, 248, 255)"><span>思考1： 假设你不能 ping 通某计算机或 IP，但你确定该计算机和你之间的网络是连通的，那么可能的原因是什么？该如何处理能保证 ping 通？</span></font></p><blockquote><p><span>当你的网络出现故障不能访问某计算机时，我们一般采用由近及远的连通性测试来确定问题所在。现假设你的 IP 是 192.168.1.89，你旁边计算机的 IP 是 192.168.1.64，网关的 IP 是 192.168.1.1 ，你所想访问的 14.215.177.39 (百度的 IP 地址之一 ) 那么过程如下：</span></p><p><span>1.ping 127.0.0.1 ，测试自己计算机的状态，如果成功，则说明本机网络软件硬件工作正常；否则，问题在本机，检查本机 TCP/IP 配置即网卡状态等。</span>
+<span>2.ping 192.168.1.64 ，测试到旁边计算机的连通性，如果成功，则说明本子网内部工作正常；否则，问题在本机网络出口到交换机之间，检查本机网卡到交换机的连线等。</span>
+<span>3.ping 192.168.1.1，测试到网关的连通性，如果成功，则说明本子网出口工作正常；否则，问题在网关。</span>
+<span>4.ping 14.215.177.39，测试到百度的连通性，如果 成功，那网络一切正常；否则，问题在网关以外。</span></p></blockquote><p><font color="rgb(240, 248, 255)"><span>思考2： 假设在网络排查中，ping 百度的 IP 即 ping 14.215.177.39 能够成功，但 ping 百度的域名即 ping </span><a href='http://www.baidu.com' target='_blank' class='url'>www.baidu.com</a><span> 则失败，那么可能的原因是什么？如何进行验证和解决？</span></font></p><blockquote><p><span>ping IP 能够成功表明链路是畅通的，但是ping 不通域名是由于域名解析出现了问题。在计算机的使用过程中，我们很多时候都是自动获取DNS服务器，但是有时使用默认的DNS服务器是 ping 不通域名的。</span></p></blockquote><blockquote><p><span>解决办法：清理计算机之前的DNS缓存，再手动设置一个新的DNS服务器；如果还是不行，则需要联系运营商。</span></p></blockquote><h5>2.4 课外浏览</h5><h5></h5><p>&nbsp;</p><p><span>Ping攻击</span></p><blockquote><p><span>Ping攻击就是不断向指定的IP地址发送不接收回复的数据包，这种攻击通过发送大于65536字节的ICMP包使操作系统崩溃。在ping程序发展初期，并未对ICMP包的大小进行限制，导致接收方缓冲区溢出，现在此bug已被修复，所以通常不可能发送大于65536个字节的ICMP包，但如果把报文分割成片段，然后在目标主机上重组，最终会导致被攻击目标缓冲区溢出，直至目标主机有限系统资源被消耗殆尽。</span></p></blockquote><h4>3.tracert</h4><h4></h4><p>&nbsp;</p><h4>3.1 简介</h4><h4></h4><p>TRACERT (Trace Route 的组合缩写)，也称为路由追踪，该命令行程序可用于跟踪 Internet 协议 （IP） 数据包传送到目标地址时经过的路径。</p><h4>3.2 实作一</h4><h4></h4><p>&nbsp;</p><p><span>要求： 要了解到某计算机如 </span><a href='http://www.baidu.com' target='_blank' class='url'>www.baidu.com</a><span> 中间经过了哪些节点（路由器）及其它状态，可使用 tracert </span><a href='http://www.baidu.com' target='_blank' class='url'>www.baidu.com</a><span> 命令，查看反馈的信息，了解节点的个数。通过网站 </span><a href='http://ip.cn' target='_blank' class='url'>http://ip.cn</a><span> 查看这些节点位于何处，是哪个公司的，大致清楚本机到百度服务器之间的路径。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102160245691.png" style="zoom:67%;" /></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102160558418.png" alt="image-20220102160558418" style="zoom:67%;" /></p><blockquote><p><span>结果分析： 通过 teacert </span><a href='http://www.baidu.com' target='_blank' class='url'>www.baidu.com</a><span> 命令可知，我的计算机和百度之间有13个节点，其中 1 号节点为内网ip，4.5 号节点为位于重庆市，10、13 号节点位于广东省，所有已知节点均属于电信公司。</span></p></blockquote><h4>3.3 实作二</h4><h4>
+要求： ping.pe 这个网站可以探测从全球主要的 ISP 到某站点如 https://qige.io 的线路状态，当然也包括各线路到该主机的路由情况。请使用浏览器访问 http://ping.pe/qige.io 进行了解。
+结果：<img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102160926858.png" alt="image-20220102160926858" style="zoom: 67%;"></h4><p><font color="rgb(240, 248, 255)"><span>思考1： tracert 能告诉我们路径上的节点以及大致的延迟等信息，那么它背后的原理是什么？(本问题可结合第二部分的 Wireshark 实验进行验证)</span></font></p><blockquote><p><span>Tracert命令通过向目标发送不同 IP 生存时间 (TTL) 值的 “Internet 控制消息协议 (ICMP)” 回应数据包，Tracert 诊断程序先确定到目标所采取的路由。要求路径上的每个路由器在转发数据包之前至少将数据包上的 TTL 递减 1。数据包上的 TTL 减为 0 时，路由器应该将“ICMP 已超时”的消息发回源系统。</span>
+<span>Tracert 先发送 TTL 为 1 的回应数据包，并在随后的每次发送过程将 TTL 递增 1，直到目标响应或 TTL 达到最大值，从而确定路由。</span></p></blockquote><p><font color="rgb(240, 248, 255)"><span>思考2： 在以上两个实作中，留意路径中的节点，会发现路径中的第一跳都是相同的，甚至似乎前几个节点都是相同的，为什么？</span>
+</font></p><blockquote><p><span>数据传输只要需要出内网，都将经过网关，所以前几个节点相同。</span></p></blockquote><p><font color="rgb(240, 248, 255)"><span>思考3： 在追踪过程中，会看到路径中某些节点显示为 * 号，这是发生了什么？</span>
+</font></p><blockquote><p><span>某些路由器会直接丢弃 TTL 过期的数据包，而不会进行信息反馈。</span></p></blockquote><h4>3.4 拓展</h4><h4></h4><p>&nbsp;</p><p><span>在 Linux 系统中，其下的 My Trace Route 即 mtr 命令。该命令的速度比 Windows 平台下的 tracert 快很多，并且显示的数据也更多。如图所示：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102161634176.png" alt="image-20220102161634176" style="zoom:67%;" /></p><blockquote><p><span>此命令仅用时几秒就成功获取了从该Linux虚拟机到百度所需要通过的所有节点，而在Windows系统中Tracert命令则是花费了30秒。</span>
+<span>使用 Google地图 可以将追踪路径可视化。</span></p></blockquote><h4>4.ARP</h4><h4>
+</h4><h4>4.1 简介</h4><h4></h4><p>&nbsp;</p><p>ARP（Address Resolution Protocol）即地址解析协议，是用于根据给定网络层地址即 IP
+地址，查找并得到其对应的数据链路层地址即 MAC地址的协议。 ARP 协议定义在 1982 年的 RFC 826。</p><h4>4.2 实作一</h4><h4></h4><p>&nbsp;</p><p><span>要求： 运行 arp -a 命令查看当前的 arp 缓存， 注意留意缓存内容。使用Ping命令Ping 一下旁边计算机 IP （注意，需保证该计算机的 IP 没有出现在 arp 缓存中，或者使用 arp -d 先删除全部缓存） ，再次查看缓存，请对缓存的变化做出解释。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102161723013.png" alt="image-20220102161723013" style="zoom:67%;" /></p><blockquote><p><span>解释： 在发送数据前，设备会先查找ARP缓存表。如果缓存表中存在对方设备的MAC地址，则直接采用该MAC地址来封装帧，然后将帧发送出去。如果缓存表中不存在相应的信息，则通过发送ARP request报文来获得它。由于删除了ARP缓存，所以设备发送了ARP报文获取了目的IP的MAC地址。学习到的IP地址和MAC地址的映射关系会被放入ARP缓存表中存放一段时间。</span></p></blockquote><h4>4.3 实作二</h4><h4></h4><p>&nbsp;</p><p><span>要求： 请使用 arp /? 命令了解该命令的各种选项。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102161834467.png" alt="image-20220102161834467" style="zoom:67%;" /></p><p>&nbsp;</p><h4>4.4 实作三</h4><h4></h4><p>&nbsp;</p><p><span>要求： arp 缓存里常常会有网关的缓存，并且是动态类型的。假设当前网关的 IP 地址是 192.168.0.1，MAC 地址是 5c-d9-98-f1-89-64，请使用 arp -s 192.168.0.1 5c-d9-98-f1-89-64 命令设置其为静态类型。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102162227758.png" alt="image-20220102162227758" style="zoom:67%;" /></p><h4>4.5 拓展</h4><h4></h4><p>&nbsp;</p><p><font color="rgb(255, 250, 205)"><span>问题1： 在实作三的操作中可能会得到 “ARP 项添加失败: 请求的操作需要提升” 该如何解决？</span></font></p><blockquote><p><span>使用命令 netsh i i show in 找到所连接的网络Idx。</span>
+<span>使用命令netsh -c “i i” add neighbors (Idx) (ip地址) (Mac地址)。</span></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题2： 在实作三中，为何缓存中常常有网关的信息？我们将网关或其它计算机的 arp 信息设置为静态有什么优缺点？</span></font></p><blockquote><p><span>ARP缓存记录着访问过的pc网卡MAC物理地址。</span>
+<span>静态分配IP地址是指给每一台计算机都分配一个固定的IP地址。</span></p></blockquote><blockquote><p><span>优点：便于管理，以固定的IP地址或IP地址分组产生的流量为依据管理，可以免除在按用户方式计费时用户每次上网都必须进行的身份认证的繁琐过程，同时也避免了用户经常忘记密码的尴尬。</span></p></blockquote><blockquote><p><span>缺点：合法用户分配的地址可能被非法盗用，不仅对网络的正常使用造成影响，同时由于被盗用的地址往往具有较高的权限，因而也容易给合法用户造成损失和潜在的安全隐患。</span></p></blockquote><h4>5.DHCP</h4><h4></h4><p>&nbsp;</p><h4>5.1 简介</h4><h4></h4><p>DHCP（Dynamic Host Configuration Protocol）即动态主机配置协议，是一个用于 IP 网络的网络协议，位于 OSI 模型的应用层，使用 UDP 协议工作，主要有两个用途：用于内部网或网络服务供应商自动分配 IP 地址给用户
+用于内部网管理员对所有电脑作中央管理</p><h4>5.2 实作一</h4><h4></h4><p>&nbsp;</p><p><span>要求： 一般地，自动获取的网络配置信息包括：IP 地址、子网掩码、网关 IP 以及 DNS 服务器 IP 等。使用 ipconfig /release 命令释放自动获取的网络配置，并用 ipconfig /renew 命令重新获取，了解 DHCP 工作过程和原理。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102162720164.png" alt="image-20220102162720164" style="zoom:67%;" /></p><p><font color="rgb(255, 250, 205)"><span>问题1： 如果未能成功释放，请思考有哪些可能的原因并着手进行解决？</span>
+</font></p><blockquote><p><span>将 DHCP Service 重启，重新下载 TCP/IP或者重新安装驱动网卡。</span></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题2： 在Windows系统下，如果由于某种原因计算机不能获取 DHCP 服务器的配置数据，那么Windows将会根据某种算法自动配置为 169.254.x.x 这样的 IP 地址。显然，这样的 IP 以及相关的配置信息是不能让我们真正接入 Internet 的，为什么？既然不能接入 Internet，那么Winodws系统采用这样的方案有什么意义？</span></font></p><blockquote><p><span>此 IP 地址为链路本地地址，是用于DHCP服务器故障，电脑无法获取IP时，由Windows系统自动分配的IP，不能作为接入Internet的IP地址。分配一个临时的IP可以连接处在同一广播域中的其他设备。</span></p></blockquote><p><font color="rgb(240, 248, 255)"><span>思考： 在一个固定地方的网络配置采用静态 /手动配置，还是动态 DHCP 来进行更好？</span></font></p><blockquote><p><span>静态ip是一个固定的IP地址，可以用作自己的网站和服务器，因此静态IP更稳定，更便于用户管理静态ip。</span></p></blockquote><h4>6.netstat</h4><h4></h4><h4>6.1 简介</h4><h4></h4><p>&nbsp;</p><p>netstat（Network Statistics）是在内核中访问网络连接状态及其相关信息的命令行程序，可以显示路由表、实际的网络连接和网络接口设备的状态信息，以及与 IP、TCP、UDP 和 ICMP 协议相关的统计数据，一般用于检验本机各端口的网络服务运行状况。</p><h4>6.2 实作一</h4><h4></h4><p>&nbsp;</p><p><span>要求： Windows系统将一些常用的端口与服务记录在 C:\WINDOWS\system32\drivers\etc\services 文件中，请查看该文件了解常用的端口号分配。</span>
+<span>结果：</span><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102163624705.png" alt="image-20220102163624705" style="zoom:67%;" /></p><h4>6.3 实作二</h4><h4></h4><p>&nbsp;</p><p><span>要求： 使用 netstat -an 命令，查看计算机当前的网络连接状况。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102163706438.png" alt="image-20220102163706438" style="zoom:67%;" /></p><blockquote><p><span>拓展： 打开的计算机端口，就是向 Internet 打开的一个通道。通过 netstat 命令，我们可以了解当前计算机哪些端口是打开的，从而找出一些恶意后台程序，分析其所作所为，并且可以进一步将相关端口关闭，降低安全风险。</span></p></blockquote><h4>7.DNS</h4><h4></h4><p>&nbsp;</p><h4>7.1 简介</h4><h4></h4><p>&nbsp;</p><p><span>DNS（Domain Name System）即域名系统，是互联网的一项服务。它作为将域名和 IP 地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。DNS 使用 TCP 和 UDP 的 53 号端口。</span></p><h4>7.2 实作一</h4><h4></h4><p>&nbsp;</p><p><span>要求： Windows 系统将一些固定的/静态的 DNS 信息记录在 C:\WINDOWS\system32\drivers\etc\hosts 文件中，如我们常用的 localhost 就对应 127.0.0.1 。请查看该文件，了解记录详情。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102164004654.png" alt="image-20220102164004654" style="zoom:67%;" /></p><p>&nbsp;</p><h4>7.3 实作二</h4><h4></h4><p>&nbsp;</p><p><span>要求： 解析过的 DNS 记录将会被缓存，以利于加快解析速度。请使用 ipconfig /displaydns 命令查看。我们也可以使用 ipconfig /flushdns 命令来清除所有的 DNS 缓存。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102164050223.png" alt="image-20220102164050223" style="zoom:67%;" /></p><h4>7.4 实作三</h4><h4></h4><p>&nbsp;</p><p><span>要求： 使用 nslookup qige.io 命令，将使用默认的 DNS 服务器查询该域名。当然你也可以指定使用 CloudFlare（1.1.1.1）或 Google（8.8.8.8） 的全球 DNS 服务器来解析，如：nslookup qige.io 8.8.8.8。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102164131515.png" alt="image-20220102164131515" style="zoom:80%;" /></p><blockquote><p><span>拓展： 我们使用浏览器上网时，或多或少的会看到一些广告。某些网站的广告是非常没有节操的，所以我们一般可以通过安装浏览器插件如 AdGuard、AdBlocker 等来拦截和过滤。这种方法简单方便有效，不过有一定安全或隐私问题，因为该插件实时知道你访问的 URL。如果不使用这种第三方的插件，希望自己完全控制，那么就请考虑在我们前面提到的 hosts 文件中添加 DNS 记录。有自愿者时时在维护全球正确的 DNS 记录文件,hosts文件</span></p></blockquote><h4>8.cache</h4><h4></h4><p>&nbsp;</p><h4>8.1 简介</h4><h4></h4><p>&nbsp;</p><p><span>cache 即缓存，是 IT 领域一个重要的技术。我们此处提到的 cache 主要是浏览器缓存。</span>
+<span>浏览器缓存是根据 HTTP 报文的缓存标识进行的，是性能优化中简单高效的一种优化方式了。一个优秀的缓存策略可以缩短网页请求资源的距离，减少延迟，并且由于缓存文件可以重复利用，还可以减少带宽，降低网络负荷。</span></p><h4>8.2 实作一</h4><h4></h4><p>&nbsp;</p><p><span>要求： 打开 Chrome 或 Firefox 浏览器，访问 </span><a href='https://qige.io' target='_blank' class='url'>https://qige.io</a><span> ，接下来敲 F12 键 或 Ctrl + Shift + I 组合键打开开发者工具，选择 Network 面板后刷新页面，你会在开发者工具底部看到加载该页面花费的时间。查看哪些文件被 cache了。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102164317421.png" alt="image-20220102164317421" style="zoom:67%;" /></p><h4>8.3 实作二</h4><h4></h4><p>&nbsp;</p><p><span>要求：接下来仍在 Network 面板，选择 Disable cache 选项框，表明当前不使用 cache，页面数据全部来自于 Internet，刷新页面，再次在开发者工具底部查看加载该页面花费的时间。你可比对与有 cache 时的加载速度差异。</span>
+<span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102164438142.png" alt="image-20220102164438142" style="zoom:67%;" /></p><p>&nbsp;</p><h3>Wireshark 实验</h3><h3></h3><h4>1.数据链路层</h4><h4>
+</h4><h4>1.1实作一 熟悉 Ethernet 帧结构</h4><h4></h4><p><span>    要求：使用 Wireshark 任意进行抓包，熟悉 Ethernet 帧的结构，如：目的 MAC、源 MAC、类型、字段等。</span></p><p><span>结果：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102171751895.png" alt="image-20220102171751895" style="zoom:67%;" /></p><blockquote><p><span>在数据包详细信息中会显示数据包的所有详细信息内容。数据包详细信息面板是最重要的，用来查看协议中的每一个字段。各行信息分别为</span>
+<span>（1）Frame: 物理层的数据帧概况</span>
+<span>（2）Ethernet II: 数据链路层以太网帧头部信息</span>
+<span>（3）Internet Protocol Version 4: 互联网层IP包头部信息</span>
+<span>（4）Transmission Control Protocol: 传输层T的数据段头部信息，此处是TCP</span>
+<span>（5）Hypertext Transfer Protocol: 应用层的信息，此处是HTTP协议</span></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题1.你会发现 Wireshark 展现给我们的帧中没有校验字段，请了解一下原因。</span></font></p><blockquote><p><span>有时校验和会由网卡计算，这时wireshark抓到的本机发送的数据包的校验和都是错误的，因此默认关闭WireShark自身校验。</span></p></blockquote><h4>1.2实作二 了解子网内/外通信时的 MAC 地址</h4><h4>
+1.2.1.ping 你旁边的计算机（同一子网），同时用 Wireshark 抓这些包（可使用 icmp 关键字进行过滤以利于分析），记录一下发出帧的目的 MAC 地址以及返回帧的源 MAC 地址是多少？这个 MAC 地址是谁的？</h4><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102173212103.png" alt="image-20220102173212103" style="zoom:67%;" /></p><blockquote><p><span>发出帧MAC地址</span><strong><span>98:fa:9b:8e:50:a4</span></strong><span>（本机）</span></p><p><span>返回帧MAC地址</span><strong><span>98:fa:9b:88:dc:62</span></strong><span>,这是旁边的机子</span></p></blockquote><p><span>1.2.2.然后 ping qige.io （或者本子网外的主机都可以），同时用 Wireshark 抓这些包（可 icmp 过滤），记录一下发出帧的目的 MAC 地址以及返回帧的源 MAC 地址是多少？这个 MAC 地址是谁的？</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102174003727.png" alt="image-20220102174003727" style="zoom:67%;" /></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102174033925.png" alt="image-20220102174033925" style="zoom:67%;" /></p><blockquote><p><span>源MAC地址是：</span><strong><span>98:fa:9b:8e:50:a4</span></strong><span>(本机)</span></p><p><span>目的MAC地址是：</span><strong><span>00:74:9c:9f:40:13</span></strong></p></blockquote><p><span>3.再次 ping </span><a href='http://www.cqjtu.edu.cn' target='_blank' class='url'>www.cqjtu.edu.cn</a><span> （或者本子网外的主机都可以），同时用 Wireshark 抓这些包（可icmp 过滤），记录一下发出帧的目的 MAC 地址以及返回帧的源 MAC 地址又是多少？这个 MAC 地址又是谁的？</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102174314890.png" alt="image-20220102174314890" style="zoom:67%;" /></p><blockquote><p><span>源MAC地址是：</span><strong><span>98:fa:9b:8e:50:a4</span></strong><span>（本机）</span></p><p><span>目的MAC地址是：</span><strong><span>00:74:9c:9f:40:13</span></strong></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题.</span>
+<span>通过以上的实验，你会发现：</span>
+<span>访问本子网的计算机时，目的 MAC 就是该主机的</span>
+<span>访问非本子网的计算机时，目的 MAC 是网关的</span>
+<span>请问原因是什么？</span></font></p><blockquote><p><span>当然我这三个都是同一个子网的，都是本机地址，但如果访问出去，就是网关地址</span></p><p><span>当本机访问的是本子网的计算机，数据包无需离开本通信子网，传输数据也是在本子网里进行，所以是对方主机的MAC物理地址；</span>
+<span>当本机访问的是非本子网的计算机，也就是说此时有两个不同通信子网的主机之间需要通信，数据包就需要离开本通信子网，这里就涉及到数据包在两个通信子网的传输，传输数据要离开本通信子网，就势必要经过网关，因此，该目的MAC物理地址就是本网关的物理地址。</span></p></blockquote><h4>1.3实作三 掌握 ARP 解析过程</h4><h4></h4><p>&nbsp;</p><p><span>1.为防止干扰，先使用 arp -d * 命令清空 arp 缓存</span>
+<span>2.ping 你旁边的计算机（同一子网），同时用 Wireshark 抓这些包（可 arp 过滤），查看 ARP 请求的格式以及请求的内容，注意观察该请求的目的 MAC 地址是什么。再查看一下该请求的回应，注意观察该回应的源 MAC 和目的 MAC 地址是什么。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102181338904.png" alt="image-20220102181338904" style="zoom:67%;" /></p><p><span>3.再次使用 arp -d * 命令清空 arp 缓存</span></p><p><span>4.然后 ping qige.io （或者本子网外的主机都可以），同时用 Wireshark 抓这些包（可 arp 过滤）。查看这次 ARP 请求的是什么，注意观察该请求是谁在回应。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102181100416.png" alt="image-20220102181100416" style="zoom:67%;" /></p><p><span>回复的是子网的网关MAC地址：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102181209825.png" alt="image-20220102181209825" style="zoom:67%;" /></p><p><span>在wireshark中这样的：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102181230277.png" alt="image-20220102181230277" style="zoom:67%;" /></p><p><font color="rgb(255, 250, 205)"><span> 问题:</span>
+<span>通过以上的实验，你应该会发现，</span>
+<span>ARP 请求都是使用广播方式发送的</span>
+<span>如果访问的是本子网的 IP，那么 ARP 解析将直接得到该 IP 对应的 MAC；如果访问的非本子网的 IP， 那么 ARP 解析将得到网关的 MAC。</span>
+<span>请问为什么？</span></font></p><blockquote><p><span>当本机访问的是本子网的计算机，数据包无需离开本通信子网， ARP 解析将也是在本子网里进行，所以ARP解析得到是对方主机的MAC物理地址；</span>
+<span>当本机访问的是非本子网的计算机，也就是说此时有两个不同通信子网的主机之间需要通信，数据包就需要离开本通信子网，这里就涉及到数据包在两个通信子网的传输，传输数据要离开本通信子网，ARP 解析就势必要经过网关，因此，该ARP 解析得到的目的MAC物理地址就是本网关的物理地址。</span></p></blockquote><h4>2.网络层</h4><h4></h4><p>&nbsp;</p><h4>2.1实作一 熟悉 IP 包结构</h4><h4></h4><p>&nbsp;</p><p><span>使用 Wireshark 任意进行抓包（可用 ip 过滤），熟悉 IP 包的结构，如：版本、头部长度、总长度、TTL、协议类型等字段。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102181632058.png" alt="image-20220102181632058" style="zoom:67%;" /></p><p><font color="rgb(255, 250, 205)"><span> 问题 :为提高效率，我们应该让 IP 的头部尽可能的精简。但在如此珍贵的 IP 头部你会发现既有头部长度字段，也有总长度字段。请问为什么？</span></font></p><blockquote><p><span>头部长度是来表明该包头部的长度，可以使得接收端计算出报头在何处结束及从何处开始读数据。总长度是为了接收方的网络层了解到传输的数据包含哪些，如果没有该部分，当数据链路层在传输时，对数据进行了填充，对应的网络层不会把填充的部分给去掉。</span></p></blockquote><h4>2.2实作二 IP 包的分段与重组</h4><h4></h4><p><span>根据规定，一个 IP 包最大可以有 64K 字节。但由于 Ethernet 帧的限制，当 IP 包的数据超过 1500 字节时就会被发送方的数据链路层分段，然后在接收方的网络层重组。</span></p><p><span>缺省的，ping 命令只会向对方发送 32 个字节的数据。我们可以使用 ping 202.202.240.16 -l 2000 命令指定要发送的数据长度。此时使用 Wireshark 抓包（用 ip.addr == 202.202.240.16 进行过滤），了解 IP 包如何进行分段，如：分段标志、偏移量以及每个包的大小等</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102182126691.png" alt="image-20220102182126691" style="zoom:67%;" /></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102182107111.png" alt="image-20220102182107111" style="zoom:67%;" /></p><p><span>当ping一个Ip的长度制定为2000是Wireshark抓包得到的4次收发的数据包如图；在这之中我们可以很清楚的看到2000长度的ip包被分为了两个ip包进行传输，第一个ip包的长度为1514,第二个长度为562；</span></p><p>&nbsp;</p><p><font color="rgb(255, 250, 205)"><span>  问题 :分段与重组是一个耗费资源的操作，特别是当分段由传送路径上的节点即路由器来完成的时候，所以 IPv6 已经不允许分段了。那么 IPv6 中，如果路由器遇到了一个大数据包该怎么办？</span></font></p><blockquote><p><span>直接丢弃再通知发送端进行重传。</span>
+<span>由于在 IPv6中分段只能在源与目的地上执行，不能在路由器上进行。因此当数据包过大时，路由器就会直接丢弃该数据包包，并向发送端发回一个&quot;分组太大&quot;的ICMP差错报文，之后发送端就会使用较小长度的IP数据报重发数据。</span></p></blockquote><h4>2.3实作三 考察 TTL 事件</h4><h4></h4><p>&nbsp;</p><p><span>在 IP 包头中有一个 TTL 字段用来限定该包可以在 Internet上传输多少跳（hops），一般该值设置为 64、128等。</span></p><p><span>在验证性实验部分我们使用了 tracert 命令进行路由追踪。其原理是主动设置 IP 包的 TTL 值，从 1 开始逐渐增加，直至到达最终目的主机。</span></p><p><span>请使用 tracert </span><a href='http://www.baidu.com' target='_blank' class='url'>www.baidu.com</a><span> 命令进行追踪，此时使用 Wireshark 抓包（用 icmp 过滤），分析每个发送包的 TTL 是如何进行改变的，从而理解路由追踪原理。</span>
+<span>命令行：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102182458414.png" alt="image-20220102182458414" style="zoom:67%;" /></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102182717457.png" alt="image-20220102182717457" style="zoom:67%;" /></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102182941169.png" alt="image-20220102182941169" style="zoom:67%;" /></p><p><span>首先，TTL是从1开始，每经过一个路由，TTL的的设置就会增加1，直到到达目的地址。发送包才将TTL设置为64或者128，将数据按照路由的顺序进行数据的发送。</span></p><p><font color="rgb(255, 250, 205)"><span> 问题:</span>
+<span>在 IPv4 中，TTL 虽然定义为生命期即 Time To Live，但现实中我们都以跳数/节点数进行设置。如果你收到一个包，其 TTL 的值为 50，那么可以推断这个包从源点到你之间有多少跳？</span></font></p><blockquote><p><span>ICMP 回显应答的 TTL 字段值为 128；TTL为返回值，跳数就为128-50=78跳。</span></p></blockquote><h4>3.传输层</h4><h4></h4><p>&nbsp;</p><h4>3.1实作一 熟悉 TCP 和 UDP 段结构</h4><h4></h4><p>&nbsp;</p><p><span>用 Wireshark 任意抓包（可用 tcp 过滤），熟悉 TCP 段的结构，如：源端口、目的端口、序列号、确认号、各种标志位等字段。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102183033374.png" alt="image-20220102183033374" style="zoom:67%;" /></p><p><span>用 Wireshark 任意抓包（可用 udp 过滤），熟悉 UDP 段的结构，如：源端口、目的端口、长度等。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102183052481.png" referrerpolicy="no-referrer" alt="image-20220102183052481"></p><p><font color="rgb(255, 250, 205)"><span>问题:</span>
+<span>由上大家可以看到 UDP 的头部比 TCP 简单得多，但两者都有源和目的端口号。请问源和目的端口号用来干什么？</span></font></p><blockquote><p><span>（1）端口号：标识同一台计算机的不同应用进程</span>
+<span>（2）源端口号：源端口号和IP地址的作用是标示报文的返回地址</span>
+<span>（3）目的端口号：端口指明接收方计算机上的应用程序接口。</span></p></blockquote><h4>3.2实作二 分析 TCP 建立和释放连接</h4><h4>
+打开浏览器访问 qige.io 网站，用 Wireshark 抓包（可用 tcp 过滤后再使用加上 Follow TCP Stream），不要立即停止 Wireshark 捕获，待页面显示完毕后再多等一段时间使得能够捕获释放连接的包。
+这里使用百度举例：</h4><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102183505922.png" alt="image-20220102183505922" style="zoom:67%;" /></p><p><span>请在你捕获的包中找到三次握手建立连接的包，并说明为何它们是用于建立连接的，有什么特征。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102183612689.png" alt="image-20220102183612689" style="zoom:67%;" /></p><blockquote><p><span>第一次握手，同步位（SYN）是1，确认位（ACK）是0</span>
+<span>第二次握手，同步位（SYN）是1，确认位（ACK）是1</span>
+<span>第三次握手，同步位（SYN）是0，确认位（ACK）是1</span></p></blockquote><p><span>请在你捕获的包中找到四次挥手释放连接的包，并说明为何它们是用于释放连接的，有什么特征。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102183640168.png" alt="image-20220102183640168" style="zoom:67%;" /></p><p><span>这里的释放连接只有三次握手，主要是ACK=1与FIN =1在同一个segement中。</span></p><p>&nbsp;</p><blockquote><p><span>（1）第一次挥手：客户端发送一个 FIN 报文，报文中会指定一个序列号。此时客户端处于 FIN_WAIT1 状态。即发出连接释放报文段（FIN=1，序号seq=u），并停止再发送数据，主动关闭TCP连接，进入FIN_WAIT1（终止等待1）状态，等待服务端的确认。</span>
+<span>（2）第二次挥手：服务端收到 FIN 之后，会发送 ACK 报文，且把客户端的序列号值 +1 作为 ACK报文的序列号值，表明已经收到客户端的报文了，此时服务端处于 CLOSE_WAIT 状态。即服务端收到连接释放报文段后即发出确认报文段（ACK=1，确认号ack=u+1，序号seq=v），服务端进入CLOSE_WAIT（关闭等待）状态，此时的TCP处于半关闭状态，客户端到服务端的连接释放。客户端收到服务端的确认后，进入FIN_WAIT2（终止等待2）状态，等待服务端发出的连接释放报文段。</span>
+<span>（3）第三次挥手：如果服务端也想断开连接了，和客户端的第一次挥手一样，发给 FIN 报文，且指定一个序列号。此时服务端处于 LAST_ACK的状态即服务端没有要向客户端发出的数据，服务端发出连接释放报文段（FIN=1，ACK=1，序号seq=w，确认号ack=u+1），服务端进入LAST_ACK（最后确认）状态，等待客户端的确认。</span>
+<span>（4）第四次挥手：客户端收到 FIN 之后，一样发送一个 ACK 报文作为应答，且把服务端的序列号值 +1 作为自己 ACK报文的序列号值，此时客户端处于TIME_WAIT 状态。需要过一阵子以确保服务端收到自己的 ACK 报文之后才会进入 CLOSED状态，服务端收到 ACK 报文之后，就处于关闭连接了，处于 CLOSED 状态。即客户端收到服务端的连接释放报文段后，对此发出确认报文段（ACK=1，seq=u+1，ack=w+1），客户端进入TIME_WAIT（时间等待）状态。此时TCP未释放掉，需要经过时间等待计时器设置的时间2MSL后，客户端才进入CLOSED状态。</span>
+<span>收到一个FIN只意味着在这一方向上没有数据流动。客户端执行主动关闭并进入TIME_WAIT是正常的，服务端通常执行被动关闭，不会进入TIME_WAIT状态。</span>
+<span>在socket编程中，任何一方执行close()操作即可产生挥手操作。</span></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题一</span>
+<span>去掉 Follow TCP Stream，即不跟踪一个 TCP 流，你可能会看到访问 qige.io 时我们建立的连接有多个。请思考为什么会有多个连接？作用是什么？</span></font></p><blockquote><p><span>它们之间的连接是属于短连接，一旦数据发送完成后，就会断开连接。虽然，断开连接，但是页面还是存在，由于页面已经被缓存下来。一旦需要重新进行发送数据，就要再次进行连接。这样的连接，是为了实现多个用户进行访问，对业务频率不高的场合，节省通道的使用，不让其长期占用通道。</span></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题二</span>
+<span>我们上面提到了释放连接需要四次挥手，有时你可能会抓到只有三次挥手。原因是什么？</span></font></p><blockquote><p><span>三次握手是因为在释放连接的时候，有一次返回的时候ACK=1确认释放连接的时候，同一个报文中FIN=1，即同时发出的释放连接的请求。</span></p></blockquote><h4>4.应用层</h4><h4></h4><p>&nbsp;</p><h4>4.1实作一 了解 DNS 解析</h4><p>&nbsp;</p><p><span>先使用 ipconfig /flushdns 命令清除缓存，再使用 nslookup qige.io 命令进行解析，同时用 Wireshark 任意抓包（可用 dns 过滤）。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102192138614.png" alt="image-20220102192138614" style="zoom:67%;" /></p><p><span>你应该可以看到当前计算机使用 UDP，向默认的 DNS 服务器的 53 号端口发出了查询请求，而 DNS 服务器的 53 号端口返回了结果。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102192220970.png" alt="image-20220102192220970" style="zoom:67%;" /></p><p><span>可了解一下 DNS 查询和应答的相关字段的含义;</span></p><p><span>DNS查询和应答报文的格式如下：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102192334622.png" alt="image-20220102192334622" style="zoom:67%;" /></p><p><font color="rgb(255, 250, 205)"><span>问题 :你可能会发现对同一个站点，我们发出的 DNS 解析请求不止一个，思考一下是什么原因？</span></font></p><blockquote><p><span>一个域名下面肯定不止一个服务器，发送DNS解析请求的时候不会一直连在一个服务器，连接不同的服务器就会有不同的服务器地址</span></p></blockquote><h4>4.2实作二 了解 HTTP 的请求和应答</h4><h4></h4><p>&nbsp;</p><p><span>1.打开浏览器访问 qige.io 网站，用 Wireshark 抓包（可用http 过滤再加上 Follow TCP Stream），不要立即停止 Wireshark 捕获，待页面显示完毕后再多等一段时间以将释放连接的包捕获。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102192719108.png" alt="image-20220102192719108" style="zoom:67%;" /></p><p><span>2.请在你捕获的包中找到 HTTP 请求包，查看请求使用的什么命令，如：GET, POST。并仔细了解请求的头部有哪些字段及其意义。</span></p><p><span>POST:</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102192822514.png" alt="image-20220102192822514" style="zoom:67%;" /></p><p><span>GET:</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102192908818.png" alt="image-20220102192908818" style="zoom:67%;" /></p><blockquote><p><span>Accept:告诉WEB服务器自己接受什么介质类型</span>
+<span>Content-Type:WEB 服务器告诉浏览器自己响应的对象的类型</span>
+<span>Content-Length:WEB 服务器告诉浏览器自己响应的对象的长度</span>
+<span>Cache-Control:用来指示缓存系统（服务器上的，或者浏览器上的）应该怎样处理缓存</span>
+<span>Host:客户端指定自己想访问的WEB服务器的域名/IP 地址和端口号</span>
+<span>POST:请求的方式，其中包括URI和版本</span></p></blockquote><p><span>3.请在你捕获的包中找到 HTTP 应答包，查看应答的代码是什么，如：200, 304, 404 等。并仔细了解应答的头部有哪些字段及其意义。</span></p><blockquote><p><span>200：交易成功；304：客户端已经执行了GET，但文件未变化；404：没有发现文件、查询或URl.</span></p></blockquote><p><font color="rgb(255, 250, 205)"><span>问题 :刷新一次 qige.io 网站的页面同时进行抓包，你会发现不少的 304 代码的应答，这是所请求的对象没有更改的意思，让浏览器使用本地缓存的内容即可。那么服务器为什么会回答 304 应答而不是常见的 200 应答？</span></font></p><blockquote><p><span>服务器告诉浏览器当前请求的资源上一次修改的时间是这个时间。浏览器第二次发送请求的时候，告诉浏览器我上次请求的资源现在还在自己的缓存中，如果你那边这个资源还没有修改，就可以不用传送应答体给我了。服务器根据浏览器传来的时间发现和当前请求资源的修改时间一致，就应答304，表示不传应答体了，从缓存里取。</span></p></blockquote><h3>Cisco Packet Tracer 实验</h3><h3></h3> <h4>CPT简介</h4><h4></h4><p>&nbsp;</p><p><span>Cisco Packet Tracer 是由Cisco公司发布的一个辅助学习工具，为学习思科网络课程的初学者去设计、配置、排除网络故障提供了网络模拟环境。用户可以在软件的图形用户界面上直接使用拖曳方法建立网络拓扑，并可提供数据包在网络中行进的详细处理过程，观察网络实时运行情况。可以学习IOS的配置、锻炼故障排查能力</span></p><h4>1.直接连接两台 PC 构建 LAN</h4><h4>
+<img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102211626433.png" alt="image-20220102211626433" style="zoom:67%;"></h4><p><span>   1、配置参数</span></p><blockquote><p><span>IP配置：</span>
+<span>PC2 : 192.168.1.1</span>
+<span>PC3 : 192.168.1.2</span></p></blockquote><p><span>2、单击pc-&gt;desktop-&gt;command prompt，然后输入ping 192.168.1.3即可开始验证是否能ping通</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102211719503.png" alt="image-20220102211719503" style="zoom:67%;" /></p><h4>2.用交换机构建 LAN</h4><h4></h4><p><span>    构建如下拓扑结构的局域网：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102205349752.png" alt="image-20220102205349752" style="zoom:67%;" /></p><p><span>各PC的基本网络配置如下表：</span></p><figure><table><thead><tr><th><strong><span>机器名</span></strong></th><th><strong><span>IP</span></strong></th><th><strong><span>子网掩码</span></strong></th></tr></thead><tbody><tr><td><span>PC0</span></td><td><span>192.168.1.1</span></td><td><span>255.255.255.0</span></td></tr><tr><td><span>PC1</span></td><td><span>192.168.1.2</span></td><td><span>255.255.255.0</span></td></tr><tr><td><span>PC2</span></td><td><span>192.168.2.1</span></td><td><span>255.255.255.0</span></td></tr><tr><td><span>PC3</span></td><td><span>192.168.2.2</span></td><td><span>255.255.255.0</span></td></tr></tbody></table></figure><p>&nbsp;</p><p><font color="rgb(255, 250, 205)"><span> </span><strong><span>问题</span></strong></font></p><ol start='' ><li><p><span>PC0 能否 </span><code>ping</code><span> 通 PC1、PC2、PC3 ？</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102210105678.png" alt="image-20220102210105678" style="zoom:67%;" /></p><blockquote><p><span>PC0只能ping通PC1，不能ping通PC2，PC3.</span></p></blockquote></li><li><p><span>PC3 能否 </span><code>ping</code><span> 通 PC0、PC1、PC2 ？为什么？</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102210305334.png" alt="image-20220102210305334" style="zoom:67%;" /></p><blockquote><p><span>PC3只能ping通PC2，不能ping通PC0，PC1.</span></p></blockquote></li><li><p><span>将 4 台 PC 的掩码都改为 </span><code>255.255.0.0</code><span> ，它们相互能 </span><code>ping</code><span> 通吗？为什么？</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102210858876.png" alt="image-20220102210858876" style="zoom:67%;" /></p><blockquote><p><span>将 4 台 PC 的掩码都改为 </span><code>255.255.0.0</code><span> ，这四台电脑就位于同一子网下。就能互相ping通。</span></p></blockquote></li><li><p><span>使用二层交换机连接的网络需要配置网关吗？为什么？</span></p></li></ol><blockquote><p><span>需要，因为二层交换机配置好网关后可在2个网络间建立传输连接，使不同网络上的主机间建立起跨越多个网络的级联的、点对点的传输连接</span></p></blockquote><h4>3、集线器 Hub</h4><h4></h4><p>&nbsp;</p><p>&nbsp;</p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102211942781.png" alt="image-20220102211942781" style="zoom:67%;" /></p><blockquote><p><span>集线器Hub对于接收到的帧只能从其他端口进行广播，而交换机会对接收到的帧进行判断并转发到相应的端口。</span></p></blockquote><p>&nbsp;</p><h4>4.交换机接口地址列表</h4><h4>
+二层交换机是一种即插即用的多接口设备，它对于收到的帧有 3 种处理方式：广播、转发和丢弃（请弄清楚何时进行何种操作）。那么，要转发成功，则交换机中必须要有接口地址列表即 MAC表，该表是交换机通过学习自动得到的！</h4><p><span>仍然构建上图的拓扑结构，并配置各计算机的 IP 在同一个一个子网，使用工具栏中的放大镜点击某交换机如左边的 Switch3，选择 </span><code>MAC Table</code><span>，可以看到最初交换机的 MAC 表是空的，也即它不知道该怎样转发帧（那么它将如何处理？），用 PC0 访问（</span><code>ping</code><span>）PC1 后，再查看该交换机的 MAC 表，现在有相应的记录，请思考如何得来。随着网络通信的增加，各交换机都将生成自己完整的 MAC 表，此时交换机的交换速度就是最快的！</span></p><p><span>1、使用工具栏中的放大镜点击某交换机如左边的 Switch0，选择 MAC Table，可以看到最初交换机的 MAC 表是空的，当pc机之间有访问了之后就有相应的记录了</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102212436402.png" alt="image-20220102212436402" style="zoom:67%;" /></p><blockquote><p><span>最开始交换机的 MAC 表是空的，是因为它不知道怎么转发帧，因此它会把接收到的帧广播出去；如果收到了某一个端口的回复他就知道这个帧的MAC地址并存到其MAC表里了。</span>
+<span>用 PC4 访问（ping）PC5，PC6 后，查看交换机的 MAC 表，发现有相应的记录，这是通过ARP（地址解析协议）得来的MAC地址。</span></p></blockquote><h4>5.生成树协议（Spanning Tree Protocol）</h4><h4>
+交换机在目的地址未知或接收到广播帧时是要进行广播的。如果交换机之间存在回路/环路，那么就会产生广播循环风暴，从而严重影响网络性能。
+而交换机中运行的 STP 协议能避免交换机之间发生广播循环风暴。</h4><p><span>1、只使用交换机构建如下拓扑</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102212836730.png" alt="image-20220102212836730" style="zoom:67%;" /></p><p><span>这是初始时的状态。我们可以看到交换机之间有回路，这会造成广播帧循环传送即形成广播风暴，严重影响网络性能</span></p><p><span>随后，交换机将自动通过生成树协议（STP）对多余的线路进行自动阻塞（Blocking），以形成一棵以 Switch5 为根（具体哪个是根交换机有相关的策略）的具有唯一路径树即生成树！</span></p><p>&nbsp;</p><p><span>经过一段时间，随着 STP 协议成功构建了生成树后，Switch3 的两个接口当前物理上是连接的，但逻辑上是不通的，处于Blocking状态（桔色）</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102212921757.png" alt="image-20220102212921757" style="zoom:67%;" /></p><p><span>在网络运行期间，假设某个时候 Switch4 与 Switch5 之间的物理连接出现问题（将 Switch4 与 Switch5 的连线剪掉），则该生成树将自动发生变化。Switch5 上方先前 Blocking 的那个接口现在活动了（绿色），但下方那个接口仍处于 Blocking 状态（桔色）。如下图所示：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102213028049.png" alt="image-20220102213028049" style="zoom:67%;" /></p><blockquote><p><span>注：</span>
+<span>交换机的 STP 协议即生成树协议始终自动保证交换机之间不会出现回路，从而形成广播风暴。</span></p></blockquote><h4>6.路由器配置初步</h4><h4>
+1、模拟重庆交通大学和重庆大学两个学校的连接，构建如下拓扑</h4><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102213224947.png" alt="image-20220102213224947" style="zoom:67%;" /></p><p><span>交通大学与重庆大学显然是两个不同的子网。在不同子网间通信需通过路由器。</span></p><blockquote><p><span>路由器的每个接口下至少是一个子网，图中我们简单的规划了 3 个子网：</span>
+<span>1、左边路由器是交通大学的，其下使用交换机连接交通大学的网络，分配网络号 192.168.1.0/24，该路由器接口也是交通大学网络的网关，分配 IP 为 192.168.1.1</span>
+<span>2、右边路由器是重庆大学的，其下使用交换机连接重庆大学的网络，分配网络号 192.168.3.0/24，该路由器接口也是重庆大学网络的网关，分配 IP 为 192.168.3.1</span>
+<span>3、两个路由器之间使用广域网接口相连，也是一个子网，分配网络号 192.168.2.0/24</span></p></blockquote><p><span>下面我们以通过路由器的广域网口连接为例来进行相关配置。请注意：我们选用的路由器默认没有广域网模块（名称为 WIC-1T</span>
+<span>等），需要关闭路由器后添加，然后再开机启动。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102213317178.png" alt="image-20220102213317178" style="zoom:67%;" /></p><blockquote><p><span>路由器有多种命令行配置模式，每种模式对应不同的提示符及相应的权限。</span>
+<span>请留意在正确的模式下输入配置相关的命令。</span>
+<span>User mode：用户模式</span>
+<span>Privileged mode：特权模式</span>
+<span>Global configuration mode：全局配置模式</span>
+<span>Interface mode：接口配置模式</span>
+<span>Subinterface mode：子接口配置模式</span></p></blockquote><p><span>在现实中，对新的路由器，显然不能远程进行配置，我们必须在现场通过笔记本的串口与路由器的 console 接口连接并进行初次的配置（注意设置比特率为9600）后，才能通过网络远程进行配置。这也是上图左上画出笔记本连接的用意。</span>
+<span>在路由器的 CLI 界面中，可看到路由器刚启动成功后，因为无任何配置，将会提示是否进行对话配置（Would you like to enter the initial configuration dialog?），因其步骤繁多，请选择 NO</span></p><p><span>比如交通大学路由器的初步配置可以如下:</span></p><p><code>Router&gt;en   // 从普通模式进入特权模式</code>
+<code>Router#conf t   // 进入全局配置模式</code>
+<code>Router(config)#interface FastEthernet0/0</code>
+<code>Router(config-if)#ip address 192.168.1.1 255.255.255.0</code>
+<code>Router(config-if)#no shutdown</code>
+<code>Router(config-if)#exit</code>
+<code>Router(config)#line vty 0 4 //可支持0-4共5个终端同时登录</code>
+<code>Router(config-line)#password dswybs // 远程登录密码</code>
+<code>Router(config-line)#login</code>
+<code>Router(config-line)#exit</code>
+<code>Router(config)#enable password dswybs // 特权模式密码</code>
+<code>Router(config)#^Z  // 退出</code>
+<span>路由器各接口配置数据：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102213933327.png" alt="image-20220102213933327" style="zoom:67%;" /></p><p><span>各PC配置数据：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214002710.png" alt="image-20220102214002710" style="zoom:67%;" /></p><p><span>1、交大路由器基本配置：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214209643.png" alt="image-20220102214209643" style="zoom:67%;" /></p><p><span>2、重大路由器基本配置：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214219615.png" alt="image-20220102214219615" style="zoom:67%;" /></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214248314.png" alt="image-20220102214248314" style="zoom:67%;" /></p><p><font color="rgb(255, 250, 205)"><span>问题：现在交通大学内的各 PC 及网关相互能 ping 通，重庆大学也类似。但不能从交大的 PC ping 通重大的PC，反之亦然，也即不能跨子网。为什么？</span></font></p><blockquote><p><span>因为交大的PC属于同一个子网并使用交换机连接，重大内的PC属于另一个子网并且也是使用交换机连接；但是交大和重大之间的连接是通过路由器，由于路由器的路由表没有初始化，因此交大的PC不能与重大的PC通信。</span></p></blockquote><h4>7.静态路由</h4><h4>
+静态路由是非自适应性路由协议，是由网络管理人员手动配置的，不能够根据网络拓扑的变化而改变。 因此，静态路由简单高效，适用于结构非常简单的网络。
+在当前这个简单的拓扑结构中我们可以使用静态路由，即直接告诉路由器到某网络该怎么走即可。</h4><p><span>1、静态路由配置</span>
+<span>在前述路由器基本配置成功的情况下使用以下命令进行静态路由协议的配置：</span></p><p><span>1、交通大学路由器静态路由配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214410313.png" alt="image-20220102214410313" style="zoom:67%;" /></p><p><span>2、重庆大学路由器静态路由配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214421378.png" alt="image-20220102214421378" style="zoom:67%;" /></p><p><span>查看路由表你可看到标记为 S 的一条路由，S 表示 Static 。</span>
+<span>至此，这些 PC 能全部相互 ping 通！</span></p><blockquote><p><span>注意：我们的拓扑只模拟了 3 个网络。在现实中，路由器连接的网络数量非常多，我们还需要配置一条缺省路由，否则其它网络皆不能到达！当然，我们的拓扑可以不考虑。</span>
+<span>Router(config)#ip route 0.0.0.0 0.0.0.0 ... // 缺省全部转发给 ... 这个IP</span></p></blockquote><h4>8.动态路由RIP</h4><h4>
+动态路由协议采用自适应路由算法，能够根据网络拓扑的变化而重新计算机最佳路由。
+RIP 的全称是 Routing Information Protocol，是距离矢量路由的代表（目前虽然淘汰，但可作为我们学习的对象）。使用 RIP 协议只需要告诉路由器直接相连有哪些网络即可，然后 RIP 根据算法自动构建出路由表。</h4><p><span>1、清除静态路由配置</span>
+<span>因为我们模拟的网络非常简单，因此不能同时使用静态和动态路由，否则看不出效果，所以我们需要把刚才配置的静态路由先清除掉。</span></p><blockquote><p><span>方法一：直接关闭路由器电源。相当于没有保存任何配置，然后各接口再按照前面基本配置所述重新配置 IP</span>
+<span>等参数（推荐此方法，可以再熟悉一下接口的配置命令）</span></p></blockquote><blockquote><p><span>方法二：使用 </span><code>no</code><span> 命令清除静态路由。在全局配置模式下，交通大学路由器使用：</span><code>no ip route 192.168.3.0</code>
+<code>255.255.255.0 192.168.2.2</code><span>，重庆大学路由器使用：</span><code>no ip route 192.168.1.0 255.255.255.0 192.168.2.1</code><span>。相当于使用 </span><code>no</code><span>命令把刚才配置的静态路由命令给取消。</span></p></blockquote><p><span>1、（依次）清除交大和重大静态路由器配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214615720.png" alt="image-20220102214615720" style="zoom:67%;" /></p><p><span>2、RIP路由配置</span>
+<span>1、交大RIP路由配置：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router&gt;en &nbsp; // 从普通模式进入特权模式</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router#conf t &nbsp; // 进入全局配置模式</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config)#router rip &nbsp; // 启用 RIP 路由协议，注意是 router 命令</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config-router)#network 192.168.1.0 &nbsp; // 网络 192.168.1.0 与我直连</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config-router)#network 192.168.2.0 &nbsp; // 网络 192.168.2.0 与我直连</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config-router)#^z &nbsp; //直接退到特权模式</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router#show ip route &nbsp;  //查看路由表</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 157px;"></div><div class="CodeMirror-gutters" style="display: none; height: 157px;"></div></div></div></pre><p><span>2、重大RIP路由配置：</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router&gt;en &nbsp; // 从普通模式进入特权模式</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router#conf t &nbsp; // 进入全局配置模式</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config)#router rip &nbsp; // 启用RIP路由协议，注意是 router 命令</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config-router)#network 192.168.3.0 &nbsp; // 网络 192.168.3.0 与我直连</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config-router)#network 192.168.2.0 &nbsp; // 网络 192.168.2.0 与我直连</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router(config-router)#^z &nbsp; //直接退到特权模式</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Router#show ip route &nbsp;  //查看路由表</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 157px;"></div><div class="CodeMirror-gutters" style="display: none; height: 157px;"></div></div></div></pre><p><span>查看路由表你可看到标记为 R 的一条路由，R 表示 RIP 。</span>
+<span>至此，这些 PC 也能全部相互 ping 通！</span></p><p><span>3、可以在特权模式下使用 debug ip rip 开启 RIP 诊断，此时会看到路由器之间不停发送的距离矢量信息，以判断网络状态是否发生改变从而更新路由表。该命令会不停的显示相关信息，打扰我们的输入，可使用 no debug ip rip 关闭 RIP 诊断</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214717126.png" alt="image-20220102214717126" style="zoom:67%;" /></p><h4>九、动态路由OSPF</h4><h4>
+<p>OSPF（Open Shortest Path First 开放式最短路径优先）是一个内部网关协议（Interior Gateway Protocol，简称 IGP）， 用于在单一自治系统（Autonomous System，AS）内决策路由。OSPF 性能优于 RIP，是当前域内路由广泛使用的路由协议。</p></h4><p><span>1、清处RIP路由配置</span>
+<span>同样的，我们需要把刚才配置的 RIP 路由先清除掉。</span></p><p><span>方法一：直接关闭路由器电源。相当于没有保存任何配置，然后各接口再按照前面基本配置所述重新配置 IP 等参数</span>
+<span>方法二：使用 </span><code>no</code><span> 命令清除 RIP 路由。在全局配置模式下，各路由器都使用：</span><code>no router rip</code><span> 命令进行清除</span></p><p><span>2、OSPF路由配置</span>
+<span>1、交大OSPF路由配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214825653.png" alt="image-20220102214825653" style="zoom:67%;" /></p><p>&nbsp;</p><p><span>2、重大OSPF路由配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102214848704.png" alt="image-20220102214848704" style="zoom:67%;" /></p><p>&nbsp;</p><p><span>查看路由表你可看到标记为 O 的一条路由，O 表示 OSPF 。</span>
+<span>至此，这些 PC 能全部相互 ping 通！</span></p><blockquote><p><span>可以在特权模式下使用 debug ip ospf events 开启 OSPF 诊断（no debug ip ospf events 关闭诊断）， 可看到路由器之间发送的 Hello 信息用以诊断当前的链路是否发生改变以便进行路由调整（事件触发而非定时更新！）。</span></p></blockquote><blockquote><p><span>我们常见的子网掩码是所谓的正向掩码，用连续的 1 和 0 来表示，其中 1 表示需精确匹配， 0 则无需，以此得到网络号。</span>
+<span>类似的，反向掩码也使用连续的 1 和 0 来表示，但相反，其中 0 表示需精确匹配， 1 则无需，以此得到相关的 IP，主要用于 OSPF 中。</span>
+<span>还有一个通配符掩码，也采用与反向掩码相似的规则，主要用于访问控制列表 ACL 中。</span></p></blockquote><h4>10.基于端口的网络地址翻译 PAT</h4><h4>
+<p>网络地址转换（NAT，Network Address Translation）被各个 Internet 服务商即 ISP 广泛应用于它们的网络中，也包括 WiFi 网络。 原因很简单，NAT 不仅完美地解决了 lP 地址不足的问题，而且还能够有效地避免来自网络外部的攻击，隐藏并保护网络内部的计算机。</p></h4><p><span>NAT 的实现方式一般有三种：</span>
+<span>静态转换： Static NAT</span>
+<span>动态转换： Dynamic NAT</span>
+<span>端口多路复用： OverLoad</span></p><p><span>端口多路复用使用最多也最灵活。OverLoad 是指不仅改变发向 Internet 数据包的源 IP 地址，同时还改变其源端口，即进行了端口地址转换（PAT，Port Address Translation）。</span>
+<span>采用端口多路复用方式，内部网络的所有主机均可共享一个合法外部 IP 地址实现对 Internet 的访问，从而可以最大限度地节约IP地址资源。 同时，又可隐藏网络内部的所有主机，有效避免来自 Internet 的攻击。因此，目前网络中应用最多的就是端口多路复用方式。</span></p><p><span>1、配置PC</span>
+<span>设定这两个学校的路由器使用 OSPF 协议，模拟交通大学使用内部 IP 地址（</span><code>192.168.1.0/24</code><span>），模拟重庆大学使用外部 IP</span>
+<span>地址（</span><code>8.8.8.0/24</code><span>），两个路由器之间使用外部 IP 地址（</span><code>202.202.240.0/24</code><span>），在交通大学的出口位置即广域网口实施</span>
+<span>PAT。</span></p><p><span>1、 拓扑图中各 PC 配置数据：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215008029.png" alt="image-20220102215008029" style="zoom:67%;" /></p><blockquote><p><span>请留意重庆大学两个 PC 的网络配置发生改变，我们模拟为外部/公网 IP 地址！</span></p></blockquote><p><span>2、路由器接口配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215027101.png" alt="image-20220102215027101" style="zoom:67%;" /></p><p><span>1、交大路由器接口配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215131312.png" alt="image-20220102215131312" style="zoom:67%;" /></p><p><span>2、重大路由器接口配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215243234.png" alt="image-20220102215243234" style="zoom:67%;" /></p><p><span>3、路由器配置</span>
+<span>拓扑图中路由器各接口配置数据：</span></p><p><span>请留意重庆大学路由器两个接口及交通大学广域网口的网络配置发生改变，然后配置 OSPF 路由，最后在交通大学路由器的广域网口实施 PAT</span></p><p><span>1、交大 OSPF 路由配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215306254.png" alt="image-20220102215306254" style="zoom:67%;" /></p><p><span>2、重大OSPF路由配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215342793.png" alt="image-20220102215342793" style="zoom:67%;" /></p><p><span>3、此时，这些 PC 能全部相互 ping 通！如在交通大学内部使用 PC0（192.168.1.2）来 ping 重庆大学的PC2（8.8.8.2）应该成功。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102215927560.png" alt="image-20220102215927560" style="zoom:67%;" /></p><p><span>4、路由丢包配置</span>
+<span>下面我们将重庆大学的路由器看着 Internet 中的骨干路由器，那么这些路由器将不会转发内部/私有 IP 地址的包（直接丢弃）。我们通过在重庆大学路由器上实施访问控制 ACL ，即丢弃来自交通大学（私有 IP 地址）的包来模拟这个丢包的过程。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220105823.png" alt="image-20220102220105823" style="zoom:67%;" /></p><p><span>此时，再使用交通大学内部的 PC0（</span><code>192.168.1.2</code><span>）来 ping 重庆大学的 PC2（</span><code>8.8.8.2</code><span>）就不成功了，会显示目的主机不可到达（</span><code>Destination host unreachable</code><span>）信息。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220218555.png" alt="image-20220102220218555" style="zoom:67%;" /></p><blockquote><p><span>ing 的同时，在 CPT 软件中使用模拟（Simulation）方式会看得非常清楚：重庆大学路由器的广域网口将来自交通大学的包丢弃了！</span></p></blockquote><p><span>5、实施PAT</span>
+<span>下面，我们就开始实施 PAT。即：我们将会在交通大学路由器的出口上将内部/私有 IP 地址转换为外部/公开 IP，从而包的源 IP发生了改变，就不会被重庆大学路由器丢弃，因此网络连通。</span></p><p><span>1、交大路由PAT配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220234635.png" alt="image-20220102220234635" style="zoom:67%;" /></p><p><span>现在，再次使用交通大学内部的 PC0（192.168.1.2）来 ping 重庆大学的PC2（8.8.8.2）则OK。</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220249628.png" alt="image-20220102220249628" style="zoom:67%;" /></p><h4>11.虚拟局域网VLAN</h4><h4>
+在实际网络中（如我校的网络），你可看到路由器一般位于网络的边界，而内部几乎全部使用交换机连接。
+前面我们分析过，交换机连接的是同一个子网！ 显然，在这样一个大型规模的子网中进行广播甚至产生广播风暴将严重影响网络性能甚至瘫痪。
+另外我们也已经知道，其实学校是划分了 N 多个子网的，那么这些交换机连接的就绝不是一个子网！这样矛盾的事情该如何解释呢？我们实际上使用了支持 VLAN 的交换机！而前述的交换机只是普通的 2 层交换机（或者我们把它当作 2 层交换机在使用。
+VLAN（Virtual Local Area Network）即虚拟局域网。通过划分 VLAN，我们可以把一个物理网络划分为多个逻辑网段即多个子网。
+划分 VLAN 后可以杜绝网络广播风暴，增强网络的安全性，便于进行统一管理等</h4><p><span>1、构建如下图示拓扑</span>
+<span>各 VLAN 下 PC 的网络配置及连接的交换机接口</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220611626.png" alt="image-20220102220611626" style="zoom:67%;" /></p><p><span>构建好的拓扑图如下：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220405761.png" alt="image-20220102220405761" style="zoom:67%;" /></p><blockquote><p><span>Cisco 2960 交换机是支持 VLAN 的交换机，共有 24 个 100M 和 2 个 1000M 以太网口。默认所有的接口都在 VLAN 1 中，故此时连接上来的计算机都处于同一 VLAN，可以进行通信。</span></p></blockquote><p><span>2、交换机VLAN配置</span>
+<span>下面我们就该交换机的 24 个 100M 接口分为 3 个部分，划分到 3 个不同的 VLAN 中，id 号分别设为 10、20、30，且设置别名（computer、communication、electronic）以利于区分和管理。</span></p><p><span>查看VLAN的划分情况：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220554452.png" alt="image-20220102220554452" style="zoom:67%;" /></p><p><span>此时可以使用 ping 命令进行测试，你会发现只有在同一 VLAN 中的 PC 才能通信，且广播也局限于该 VLAN。</span>
+<span>用PC14分别ping一下PC15和PC18：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220636589.png" alt="image-20220102220636589" style="zoom:67%;" /></p><h4>12.虚拟局域网管理VTP</h4><h4>
+前一个实验我们在交换机上进行了 VLAN 的规划和划分。但在实际应用中，我们绝不允许在这些支持VLAN的交换机上进行随意的 VLAN 划分，如此将造成管理混乱！VLAN的划分必须得到统一的规划和管理，这就需要 VTP 协议。
+VTP（VLAN Trunk Protocol）即 VLAN 中继协议。VTP 通过 ISL 帧或 Cisco 私有 DTP 帧（可查阅相关资料了解）保持 VLAN 配置统一性，也被称为虚拟局域网干道协议，它是思科私有协议。 VTP 统一管理、增加、删除、调整VLAN，自动地将信息向网络中其它的交换机广播。
+此外，VTP 减小了那些可能导致安全问题的配置，只要在 VTP Server 做相应设置，VTP Client 会自动学习 VTP Server 上的 VLAN 信息。</h4><p><span>1、重新构建一个拓扑结构</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220718474.png" alt="image-20220102220718474" style="zoom:67%;" /></p><p><span>pc连接的交换机以及接口以及网络配置如下：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220805541.png" alt="image-20220102220805541" style="zoom:67%;" /></p><p><span>注意：</span>
+<span>1、作为干线，两个 2960 交换机和核心的 3560 交换机应该使用 Gbit 口相连。这虽然不是必须，但现实中这样连接性能最好。</span>
+<span>2、3560 交换机是网络中的核心交换机，我们将其作为 VTP Server，VTP 域及 VLAN 将在其上创建和管理。</span>
+<span>3、两个 2960 交换机是是局域网中的汇聚层/接入层交换机，将作为 VTP Client，可决定加入的 VTP 域和 VLAN。</span></p><p><span>为演示 VTP，重新构建如下拓扑结构：</span></p><p><span>2、新建两个VLAN并PC0 和 PC2 属于 VLAN 2，PC1 和 PC3 属于 VLAN 3</span>
+<span>1、3560 VTP Server 配置：</span></p><blockquote><p><span>我们将在核心交换机 3560上进行如下工作：</span>
+<span>1、设置为 server 模式，VTP 域为 cqjtu</span>
+<span>2、新建 VLAN 2，网络号 192.168.1.0/24，网关 192.168.1.1</span>
+<span>3、新建 VLAN 3，网络号 192.168.2.0/24，网关 192.168.2.1</span></p></blockquote><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220839158.png" alt="image-20220102220839158" style="zoom:67%;" /></p><p><span>2、2960A（左边） VTP Client 配置：</span></p><blockquote><p><span>我们将在左边交换机 2960A 上进行如下工作：</span>
+<span>1、加入名为 cqjtu 的 VTP 域</span>
+<span>2、配置与核心交换机 3560 连接的千兆接口 g0/1 为 trunk 模式</span>
+<span>3、将接口 f0/1 划分到 VLAN 2 中</span>
+<span>4、将接口 f0/2 划分到 VLAN 3 中</span></p></blockquote><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220859569.png" alt="image-20220102220859569" style="zoom:67%;" /></p><p><span>3、2960B（右边） VTP Client 配置：</span></p><blockquote><p><span>我们将在右边交换机 2960B 上进行同样的工作：</span>
+<span>1、加入名为 cqjtu VTP 域</span>
+<span>2、配置与核心交换机 3560 连接的千兆接口 g0/1 为 trunk 模式</span>
+<span>3、将接口 f0/1 划分到 VLAN 2 中</span>
+<span>4、将接口 f0/2 划分到 VLAN 3 中</span></p></blockquote><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220914711.png" alt="image-20220102220914711" style="zoom:67%;" /></p><p><span>VTP配置完毕，同 VLAN 可以 ping 通，而不同 VLAN 不行（即使在同一交换机下，如从 PC0 到 PC1），且能够方便的统一规划和管理</span></p><p><span>使用 PC0（192.168.1.2） ping PC1（192.168.2.2） 发现不通；使用 PC0 ping PC2 的发现可以ping通，说明不管是否在同一交换机下，只要处于同一VLAN即可ping通，反之则不行</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102220936180.png" alt="image-20220102220936180" style="zoom:67%;" /></p><blockquote><p><span>独臂路由的缺陷：</span>
+<span>当使用 CPT 的模拟方式进行上面的测试时（ PC0 ping PC1），你会非常清楚的看到 ICMP 包全部都由 3560 交换机在转发，非常容易形成瓶颈。</span>
+<span>现实中，我们一般不使用这种方式，而是真正使用其三层转发功能，即&quot;一次路由多次交换&quot;</span></p></blockquote><h4>13.DHCP、DNS及Web服务器简单配置</h4><h4>
+1、构建拓扑
+动态主机配置 DHCP、域名解析 DNS 以及 Web 服务在日常应用中作用巨大，我们构建如下简单的拓扑来进行练习。</h4><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221027624.png" alt="image-20220102221027624" style="zoom:67%;" /></p><p><span>该拓扑中，服务器及客户机都连在同一交换机上。为简单起见，服务器 Server-PT 同时作为 DHCP、DNS 以及 Web 服务器，各客户机无需配置，将自动获取网络配置。</span>
+<span>点击 CPT 拓扑图中的 Server 图标，设置其静态 IP 地址为 19.89.6.4/24，然后选择 Service 进行如下相关配置：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221047823.png" alt="image-20220102221047823" style="zoom:67%;" /></p><p><span>HTTP：</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221136533.png" alt="image-20220102221136533" style="zoom:67%;" /></p><p><span>DHCP:(配置好了点save)</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221151032.png" alt="image-20220102221151032" style="zoom:67%;" /></p><p><span>DNS:（peizhihaol点add）</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221213221.png" alt="image-20220102221213221" style="zoom:67%;" /></p><p><span>到这里就配置好了</span></p><p><span>2、先查看各 PC，看看是否获得网络配置</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221241885.png" alt="image-20220102221241885" style="zoom:67%;" /></p><p><span>3、我们在 DNS 服务器中把谷歌和百度的 IP 都设为了 19.89.6.4，即 Server-PT，所以，如果打开 PC0 的浏览器，输入 </span><a href='http://www.google.com' target='_blank' class='url'>www.google.com</a><span> 或者 </span><a href='http://www.baidu.com' target='_blank' class='url'>www.baidu.com</a><span>，我们都应该看到默认的 Server-PT 这个 Web 服务器的主页（你也可进行编辑）</span></p><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221309522.png" alt="image-20220102221309522" style="zoom:67%;" /></p><h4>15.WLAN初步配置</h4><h4>
+1、构建一个拓扑
+WLAN 即 WiFi 当前也是广泛的应用在各种场景。 我们通过构建如下拓扑的一个家庭 WLAN 来练习一下其相关的配置：</h4><p><img src="C:\Users\12179\AppData\Roaming\Typora\typora-user-images\image-20220102221339384.png" alt="image-20220102221339384" style="zoom:67%;" /></p><p><span>2、添加无线网卡</span>
+<span>笔记本及台式机默认只有有线网卡，请先关机，在关机状态下删除有线网卡，添加无线网卡，然后再开机。</span></p><p><span>一般地，我们需要配置无线路由器的基本网络配置（IP、掩码、网关、DNS 等，现实中多为自动获取），然后再配置无线路由器的无线访问部分如连接密码及加密类型等，并开启 DHCP 功能等。有关配置请参考相关资料。</span></p></div>
+</body>
+</html>
